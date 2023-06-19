@@ -1,0 +1,17 @@
+﻿@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.custom-table {
+  background-color: #cf76b4;
+  color: rgb(223, 88, 88);
+}
+
+.custom-table th {
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.custom-table td {
+  padding: 0.75rem;
+}

@@ -1,0 +1,130 @@
+﻿<h1>Danh sách học sinh</h1>
+
+
+<table  class="border-separate border-spacing-2 border border-slate-400 custom-table...">
+  <thead>
+    <tr>
+      <th class="border border-slate-300 ...">ho va ten</th>
+      <th class="border border-slate-300 ...">ngay sinh</th>
+      <th class="border border-slate-300 ...">nu</th>
+      <th class="border border-slate-300 ...">ma sv</th>
+      <th class="border border-slate-300 ...">ma lop</th>
+      <th class="border border-slate-300 ...">tinh</th>
+      <th class="border border-slate-300 ...">xoa |   cap nhat</th>
+      <!-- <th class="border border-slate-300 ..."></th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hocSinh of hocSinhs">
+      <td class="border border-slate-300  py-2 px-4 rounded...">{{ hocSinh.hoTen }}</td>
+      <td class="border border-slate-300  py-2 px-4 rounded...">{{ hocSinh.ngaySinh}}</td>
+      <td class="border border-slate-300  py-2 px-4 rounded...">{{ hocSinh.nu }}</td>
+      <td class="border border-slate-300  py-2 px-4 rounded...">{{ hocSinh.masv }}</td>
+      <td class="border border-slate-300  py-2 px-4 rounded...">{{ hocSinh.maLop }}</td>
+      <td class="border border-slate-300  py-2 px-4 rounded...">{{ hocSinh.tinh }}</td>
+      <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" (click)="deleteSinhViens(hocSinh._id)">
+        Xóa
+      </button>
+      <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" (click)="updateSinhViens(hocSinh)">
+        cap nhat
+      </button>
+      
+           <!-- <td class="px-4 py-2">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="editHocSinh(hocSinh.id)" *ngIf="editingHocSinhId !== hocSinh.id">Chỉnh sửa</button>
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="updateHocSinh(hocSinh.id)" *ngIf="editingHocSinhId === hocSinh.id">Lưu</button>
+        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" (click)="deleteHocSinh(hocSinh.id)">Xóa</button>
+      </td> -->
+    </tr>
+  </tbody>
+</table>
+<div>
+  <br>
+  <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" >
+    tao moi sinh vien
+  </button>
+
+  <form (submit)="addHocSinh(
+    tenHocSinh.value,
+    ngaySinh.value,
+    nu.value,
+    masv.value,
+    lopHoc.value,
+    tinh.value,
+    hocBong.valueAsNumber
+  )">
+<div class="form-group flex items-center">
+<label class="w-32" for="tenHocSinh:">Tên:  </label>
+<input type="text" class="form-control border" #tenHocSinh id="tenHocSinh"  required>
+</div>
+<div class="form-group flex items-center">
+<label class="w-32"for="ngaySinh">Ngày sinh:  </label>
+<input type="text" class="form-control border" #ngaySinh id="ngaySinh"  required>
+</div>
+<div class="form-group flex items-center">
+<label class="w-32" for="nu">Nu:  </label>
+<input type="text" class="form-control border" #nu id="nu" required>
+</div>
+<div class="form-group flex items-center">
+<label class="w-32" for="masv">Mã sinh viên:  </label>
+<input type="text" class="form-control border" #masv id="masv"  required>
+</div>
+<div class="form-group flex items-center">
+<label class="w-32" for="lopHoc">Lớp học:  </label>
+<input type="text" class="form-control border" #lopHoc id="lopHoc"  required>
+</div>
+<div class="form-group flex items-center">
+<label class="w-32" for="tinh">Tỉnh:  </label>
+<input type="text" class="form-control border" #tinh id="tinh"   required>
+</div>
+<div class="form-group flex items-center">
+  <label class="w-32" for="hocBong">Hoc Bong:  </label>
+  <input type="number" class="form-control border" #hocBong id="hocBong" required>
+  </div>
+<button type="submit" class="btn btn-primary border bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Tạo mới</button>
+</form>
+</div>
+
+
+<br>
+<form id="updateForm" (submit)="updateHocSinh(
+    editingHocSinhId,
+    updateTenHocSinh.value,
+    updateNgaySinh.value,
+    updateNu.value,
+    updateMasv.value,
+    updateLopHoc.value,
+    updateTinh.value,
+    editingHocBong
+      )">
+    <!-- <div class="form-group">
+    <label for="id">id</label>
+    <input type="text" class="form-control border" #id id="id" [value]="editingHocSinhId" required>
+    </div> -->
+    <div class="form-group flex items-center">
+    <label class="w-32" for="tenHocSinh">Tên:  </label>
+    <input type="text" class="form-control border" #updateTenHocSinh id="tenHocSinh" [value]="editingHoTen" required>
+    </div>
+    <div class="form-group flex items-center">
+    <label class="w-32" for="ngaySinh">Ngày sinh:  </label>
+    <input type="text" class="form-control border" #updateNgaySinh id="ngaySinh" [value]="editingNgaySinh" required>
+    </div>
+    <div class="form-group flex items-center">
+    <label class="w-32" for="nu">Giới tính:  </label>
+    <input type="text" class="form-control border" #updateNu id="nu" [value]="editingNu" required>
+    </div>
+    <div class="form-group flex items-center">
+    <label class="w-32" for="masv">Mã sinh viên:  </label>
+    <input type="text" class="form-control border" #updateMasv id="masv" [value]="editingMasv" required>
+    </div>
+    <div class="form-group flex items-center">
+    <label class="w-32" for="lopHoc">Lớp học:  </label>
+    <input type="text" class="form-control border" #updateLopHoc id="lopHoc" [value]="editingMaLop" required>
+    </div>
+    <div class="form-group flex items-center">
+    <label class="w-32" for="tinh">Tỉnh:  </label>
+    <input type="text" class="form-control border" #updateTinh id="tinh"  [value]="editingTinh" required>
+    </div>
+    <!-- Thêm các trường khác cho việc tạo mới học sinh -->
+    <button type="submit" class="btn btn-primary border bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">cap nhat</button>
+      </form>
+
